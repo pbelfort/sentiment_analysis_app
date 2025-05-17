@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentiments/resumo_sentimento.dart';
 import 'dart:convert';
-import 'package:url_launcher/url_launcher.dart';
+import 'news_screen.dart';
 import 'top_palavras_widget.dart';
 
 void main() {
@@ -16,14 +16,15 @@ class NoticiasPage extends StatefulWidget {
   const NoticiasPage({super.key});
 
   @override
-  _NoticiasPageState createState() => _NoticiasPageState();
+  NoticiasPageState createState() => NoticiasPageState();
 }
 
-class _NoticiasPageState extends State<NoticiasPage> {
+class NoticiasPageState extends State<NoticiasPage> {
   final TextEditingController _termoController = TextEditingController();
   List<dynamic> _noticias = [];
   List<dynamic> _topPalavras = [];
   Map<String, dynamic> _resumoSentimento = {};
+  List<dynamic> _topicos = [];
 
   bool _carregando = false;
   String _erro = '';
@@ -35,6 +36,7 @@ class _NoticiasPageState extends State<NoticiasPage> {
       _noticias = [];
       _topPalavras = [];
       _resumoSentimento = {};
+      _topicos = [];
     });
 
     try {
@@ -49,6 +51,7 @@ class _NoticiasPageState extends State<NoticiasPage> {
           _noticias = dados['noticias'] ?? [];
           _topPalavras = dados['top_palavras'] ?? [];
           _resumoSentimento = dados['resumo_sentimentos'] ?? {};
+          _topicos = dados['topicos'] ?? [];
         });
       } else {
         setState(() {
@@ -103,83 +106,40 @@ class _NoticiasPageState extends State<NoticiasPage> {
                     const Text('Nenhuma notícia carregada.')
                   else
                     Expanded(
-                      child: ListView.builder(
-                        itemCount: _noticias.length,
-                        itemBuilder: (context, index) {
-                          final noticia = _noticias[index];
-                          return Column(
-                            children: [
-                              if (index == 0) ...[
-                                TopPalavrasWidget(
-                                  topPalavras: _topPalavras,
-                                ),
-                                const SizedBox(height: 16),
-                                SentimentoResumoLinha(
-                                    resumo: _resumoSentimento),
-                                const SizedBox(height: 16),
-                              ],
-                              Card(
-                                elevation: 3,
-                                child: ListTile(
-                                  title:
-                                      Text(noticia['titulo'] ?? 'Sem título'),
-                                  subtitle: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        noticia['descricao'] ?? '',
-                                        maxLines:
-                                            3, // número de linhas visíveis
-                                        overflow: TextOverflow
-                                            .ellipsis, // adiciona "..." no final
-                                        style: const TextStyle(fontSize: 14),
+                      child: ListView(
+                        children: [
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Resumo dos sentimentos',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 22),
+                          SentimentoResumoLinha(resumo: _resumoSentimento),
+                          const SizedBox(height: 32),
+                          TopPalavrasWidget(
+                            topPalavras: _topPalavras,
+                          ),
+                          const SizedBox(height: 32),
+                          Center(
+                            child: ElevatedButton(
+                                child: const Text('Ver Notícias'),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => NewsPage(
+                                        noticias: _noticias,
+                                        topicos: _topicos,
                                       ),
-                                      const SizedBox(height: 4),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                              'Sentimento: ${noticia['sentimento']}',
-                                              style: const TextStyle(
-                                                  fontWeight: FontWeight.bold)),
-                                          Align(
-                                            alignment: Alignment.centerRight,
-                                            child: TextButton(
-                                              onPressed: () =>
-                                                  _abrirLink(noticia['link']),
-                                              child: const Text('Saiba mais'),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  onTap: () {
-                                    final link = noticia['link'];
-                                    if (link != null) {
-                                      showDialog(
-                                        context: context,
-                                        builder: (_) => AlertDialog(
-                                          title: const Text('Link da notícia'),
-                                          content: Text(link),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () =>
-                                                  Navigator.pop(context),
-                                              child: const Text('Fechar'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    }
-                                  },
-                                ),
-                              ),
-                            ],
-                          );
-                        },
+                                    ),
+                                  );
+                                }),
+                          ),
+                          const SizedBox(height: 32),
+                        ],
                       ),
                     ),
                 ],
@@ -187,10 +147,4 @@ class _NoticiasPageState extends State<NoticiasPage> {
       ),
     );
   }
-}
-
-void _abrirLink(String url) async {
-  final uri = Uri.parse(url);
-
-  await launchUrl(uri);
 }
