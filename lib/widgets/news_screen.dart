@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sentiments/models/new_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NewsPage extends StatelessWidget {
-  final List<dynamic> noticias;
-  final List<dynamic> topicos;
+  final List<Noticia> noticias;
+  final List<Topico> topicos;
 
   const NewsPage({
     super.key,
@@ -21,16 +22,16 @@ class NewsPage extends StatelessWidget {
           itemCount: noticias.length,
           itemBuilder: (context, index) {
             final noticia = noticias[index];
-            final palavras = topicos[index]['palavras'] as List<dynamic>;
+            final palavras = topicos[index].palavras;
             return Card(
               elevation: 3,
               child: ListTile(
-                title: Text(noticia['titulo'] ?? 'Sem título'),
+                title: Text(noticia.titulo ?? 'Sem título'),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      noticia['descricao'] ?? '',
+                      noticia.descricao ?? '',
                       maxLines: 3, // número de linhas visíveis
                       overflow:
                           TextOverflow.ellipsis, // adiciona "..." no final
@@ -42,13 +43,13 @@ class NewsPage extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            getSentimentoIcon(noticia['sentimento']),
+                            getSentimentoIcon(noticia.sentimento ?? ''),
                           ],
                         ),
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                            onPressed: () => _abrirLink(noticia['link']),
+                            onPressed: () => _abrirLink(noticia.link ?? ''),
                             child: const Text('Saiba mais'),
                           ),
                         ),
