@@ -32,12 +32,7 @@ Este projeto é um aplicativo mobile Flutter com backend em Python (FastAPI) que
 
 📷 Capturas de Tela
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/b4be2c3f-a901-4b85-874e-4c2cc05ceb37" alt="Screenshot 1" width="200"/>
-  <img src="https://github.com/user-attachments/assets/4d38e762-fbef-439f-b22a-428daa79a3a7" alt="Screenshot 1" width="200"/>
-  <img src="https://github.com/user-attachments/assets/605c48cc-6c95-4502-b774-332d9d1919c3" alt="Screenshot 1" width="200"/>
-  <img src="https://github.com/user-attachments/assets/11ac74d3-611d-4545-bdf0-ba775dbf3e93" alt="Screenshot 1" width="200"/>
-</p>
+![image](https://github.com/user-attachments/assets/c04e84d1-6737-48fe-a9a7-bb5c1e40c7b1)
 
 👨‍💻 Desenvolvedores : [Pedro Belfort]
 
