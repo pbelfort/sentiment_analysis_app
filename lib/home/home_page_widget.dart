@@ -13,19 +13,20 @@ class HomePageWidget extends StatelessWidget {
     final termoController = TextEditingController();
 
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: controller.carregando
-            ? _buildSearchLoading(context)
-            : SearchResult(
-                termoController: termoController,
-                controller: controller,
-              ));
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: controller.carregando
+          ? _buildSearchLoading(context)
+          : SearchResult(
+              termoController: termoController,
+              controller: controller,
+            ),
+    );
   }
 
   Widget _buildSearchLoading(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 150,
+        vertical: 80,
       ),
       child: Lottie.asset(
         'assets/animations/searching.json',

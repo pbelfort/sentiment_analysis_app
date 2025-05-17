@@ -64,41 +64,39 @@ class SearchResult extends StatelessWidget {
             ),
           )
         else
-          Expanded(
-            child: Column(
-              children: [
-                const SizedBox(height: 8),
-                Text(
-                  'Resumo dos sentimentos "${controller.termo}"',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+          Column(
+            children: [
+              const SizedBox(height: 8),
+              Text(
+                'Resumo dos sentimentos "${controller.termo}"',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(height: 22),
-                SentimentoResumoLinha(resumo: controller.resumoSentimento),
-                const SizedBox(height: 32),
-                TopPalavrasWidget(topPalavras: controller.topPalavras),
-                const SizedBox(height: 32),
-                Center(
-                  child: ElevatedButton(
-                    child: const Text('Ver Notícias'),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => NewsPage(
-                            noticias: controller.noticias,
-                            topicos: controller.topicos,
-                          ),
+              ),
+              const SizedBox(height: 22),
+              SentimentoResumoLinha(resumo: controller.resumoSentimento),
+              const SizedBox(height: 32),
+              TopPalavrasWidget(topPalavras: controller.topPalavras),
+              const SizedBox(height: 32),
+              Center(
+                child: ElevatedButton(
+                  child: const Text('Ver Notícias'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NewsPage(
+                          noticias: controller.noticias,
+                          topicos: controller.topicos,
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
-                const SizedBox(height: 32),
-              ],
-            ),
+              ),
+              const SizedBox(height: 32),
+            ],
           ),
       ],
     );
