@@ -1,4 +1,4 @@
-name: sentiments
+name: Sentiments
 description: "A new Flutter project."
 publish_to: 'none'
 
@@ -18,6 +18,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.14.3"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/app_icon.png"
+  min_sdk_android: 21
 
   flutter_lints: ^4.0.0
 
