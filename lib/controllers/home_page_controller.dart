@@ -12,7 +12,7 @@ class HomePageController with ChangeNotifier {
   List<Topico> topicos = [];
   bool carregando = false;
   String erro = '';
-
+  String termo = '';
   HomePageController(this._repository);
 
   Future<void> buscarNoticias(String termo) async {

@@ -10,9 +10,37 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (_) => HomePageController(repository),
-      child: const MaterialApp(
-        home: NoticiasPage(),
+      child: MaterialApp(
+        home: const NoticiasPage(),
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.orangeAccent,
+            brightness: Brightness.light,
+          ),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.orangeAccent,
+            foregroundColor: Colors.white,
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.orangeAccent),
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.orangeAccent,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            ),
+          ),
+        ),
       ),
     ),
   );
@@ -29,7 +57,11 @@ class NoticiasPageState extends State<NoticiasPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Busca de Notícias')),
+      appBar: AppBar(
+          title: const Text(
+        'Busca de Notícias',
+        style: TextStyle(color: Colors.black),
+      )),
       body: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: HomePageWidget()),

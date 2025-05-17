@@ -44,7 +44,7 @@ class TopPalavrasWidget extends StatelessWidget {
                         child: Container(
                           height: 20,
                           decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Colors.deepOrange,
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
