@@ -24,17 +24,17 @@ class NewsModel {
       noticias: json["noticias"] == null
           ? []
           : List<Noticia>.from(
-              json["noticias"]!.map((x) => Noticia.fromJson(x))),
+              json["noticias"]?.map((x) => Noticia.fromJson(x))),
       resumoSentimentos: json["resumo_sentimentos"] == null
           ? null
           : ResumoSentimentos.fromJson(json["resumo_sentimentos"]),
       topPalavras: json["top_palavras"] == null
           ? []
-          : List<List<dynamic>>.from(json["top_palavras"]!.map(
-              (x) => x == null ? [] : List<dynamic>.from(x!.map((x) => x)))),
+          : List<List<dynamic>>.from(json["top_palavras"]?.map(
+              (x) => x == null ? [] : List<dynamic>.from(x?.map((x) => x)))),
       topicos: json["topicos"] == null
           ? []
-          : List<Topico>.from(json["topicos"]!.map((x) => Topico.fromJson(x))),
+          : List<Topico>.from(json["topicos"]?.map((x) => Topico.fromJson(x))),
       nextPage: json["nextPage"],
     );
   }
@@ -100,8 +100,8 @@ class Topico {
       topico: json["topico"],
       palavras: json["palavras"] == null
           ? []
-          : List<List<dynamic>>.from(json["palavras"]!.map(
-              (x) => x == null ? [] : List<dynamic>.from(x!.map((x) => x)))),
+          : List<List<dynamic>>.from(json["palavras"]?.map(
+              (x) => x == null ? [] : List<dynamic>.from(x?.map((x) => x)))),
     );
   }
 }
