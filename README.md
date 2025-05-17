@@ -5,6 +5,7 @@ Este projeto é um aplicativo mobile Flutter com backend em Python (FastAPI) que
 ## 📱 Tecnologias Utilizadas
 
 ### Frontend (Flutter)
+
 - `Flutter`
 - `Provider` (gerenciamento de estado)
 - `HTTP` (requisições à API)
@@ -12,6 +13,7 @@ Este projeto é um aplicativo mobile Flutter com backend em Python (FastAPI) que
 - `Dart`
 
 ### Backend (FastAPI)
+
 - `FastAPI`
 - `Uvicorn`
 - `Requests`
@@ -27,7 +29,6 @@ Este projeto é um aplicativo mobile Flutter com backend em Python (FastAPI) que
 ### 📁 Flutter App
 
 ![image](https://github.com/user-attachments/assets/226f9b48-3788-400c-b8d6-7693be4c4225)
-
 
 📷 Capturas de Tela
 
