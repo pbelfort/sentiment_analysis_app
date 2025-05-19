@@ -7,9 +7,9 @@ class TopPalavrasWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Pega o valor máximo para escalar as barras proporcionalmente
-    final int maxValue =
-        topPalavras.map((e) => e[1] as int).reduce((a, b) => a > b ? a : b);
+    // Permite tanto int quanto double
+    final num maxValue =
+        topPalavras.map((e) => e[1] as num).reduce((a, b) => a > b ? a : b);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,7 +21,7 @@ class TopPalavrasWidget extends StatelessWidget {
         const SizedBox(height: 8),
         ...topPalavras.map((palavra) {
           final String texto = palavra[0];
-          final int valor = palavra[1];
+          final num valor = palavra[1];
           final double porcentagem = valor / maxValue;
 
           return Padding(
@@ -53,7 +53,7 @@ class TopPalavrasWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Text('$valor'),
+                Text((valor * 100).toStringAsFixed(0)), // Mostra como inteiro
               ],
             ),
           );

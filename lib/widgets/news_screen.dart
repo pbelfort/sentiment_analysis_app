@@ -22,6 +22,8 @@ class NewsPage extends StatelessWidget {
           itemCount: noticias.length,
           itemBuilder: (context, index) {
             final noticia = noticias[index];
+            if (index > topicos.length - 1) return const SizedBox.shrink();
+
             final palavras = topicos[index].palavras;
             return Card(
               elevation: 3,

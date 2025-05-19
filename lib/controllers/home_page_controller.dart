@@ -17,6 +17,7 @@ class HomePageController with ChangeNotifier {
 
   Future<void> buscarNoticias(String termo) async {
     try {
+      erro = '';
       carregando = true;
       notifyListeners();
       final resultado = await _repository.buscarNoticias(termo);
